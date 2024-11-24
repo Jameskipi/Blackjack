@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -63,8 +64,6 @@ namespace Blackjack.cards
 
         public Card draw()
         {
-            Console.WriteLine(size);
-
             if (size == 0)
             {
                 return null;
@@ -72,12 +71,13 @@ namespace Blackjack.cards
 
             do
             {
+                rnd = new Random();
                 index = rnd.Next(max_size);
                 current_card = cards[index];
             }
             while (current_card.isUsed());
 
-                size = size - 1;
+            size = size - 1;
             current_card.setUsed(true);
 
             return current_card;
