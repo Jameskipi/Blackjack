@@ -10,6 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Newtonsoft.Json;
+using System.IO;
+
 namespace Blackjack
 {
     public partial class Blackjack : Form
@@ -19,50 +22,29 @@ namespace Blackjack
             InitializeComponent();
         }
 
-        internal void DrawCard(bool isPlayer)
-        {
-            if (isPlayer)
-            {
-                PictureBox Container = PlayerCardsContainer[(52 - PlayerDeck.getSize())];
-                PlayerCard = PlayerDeck.draw();
-
-                if (PlayerCard == null)
-                {
-                    Container.ImageLocation = "../../img/nullcard.png";
-                }
-                else
-                {
-                    Container.ImageLocation = $"../../{PlayerCard.getImgPath()}";
-                }
-
-                Container.Load();
-                MoveCards(true);
-            }
-            else
-            {
-                PictureBox Container = EnemyCardsContainer[(52 - EnemyDeck.getSize())];
-                EnemyCard = EnemyDeck.draw();
-
-                if (EnemyCard == null)
-                {
-                    Container.ImageLocation = "../../img/nullcard.png";
-                }
-                else
-                {
-                    Container.ImageLocation = $"../../{EnemyCard.getImgPath()}";
-                }
-
-                Container.Load();
-                MoveCards(false);
-            }
-        }
-
         internal void Blackjack_Load(object sender, EventArgs e)
         {
-
+            // Start
             Console.WriteLine("Started");
             PlayerDeck.show();
             EnemyDeck.show();
+
+            // Load save data
+            try
+            {
+                string playerdata = File.ReadAllText(@"../../JSON/PlayerData.json");
+                string enemydata = File.ReadAllText(@"../../JSON/EnemyData.json");
+
+                PlayerStats = JsonConvert.DeserializeObject<data.Player>(playerdata);
+                EnemyStats = JsonConvert.DeserializeObject<data.Enemy>(enemydata);
+
+                Console.WriteLine(PlayerStats.getMoneyAmount());
+                Console.WriteLine(EnemyStats.getMoneyAmount());
+            } 
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("ERROR: Save file not found. Progress will be restarted");
+            }
 
             // Add PictureBoxes to containers
             PlayerCardsContainer[0] = PlayerCard0;
@@ -106,6 +88,56 @@ namespace Blackjack
             EnemyCard1.Left = ((this.ClientSize.Width - EnemyCard1.Width) / 2) + 53;
         }
 
+        private void Blackjack_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Save data on form closing
+            string playerdata = JsonConvert.SerializeObject(PlayerStats);
+            string enemydata = JsonConvert.SerializeObject(EnemyStats);
+
+            File.WriteAllText(@"../../JSON/PlayerData.json", playerdata);
+            File.WriteAllText(@"../../JSON/EnemyData.json", enemydata);
+
+            Console.WriteLine("Progress saved successfully");
+        }
+
+        private void DrawCard(bool isPlayer)
+        {
+            if (isPlayer)
+            {
+                PictureBox Container = PlayerCardsContainer[(52 - PlayerDeck.getSize())];
+                PlayerCard = PlayerDeck.draw();
+
+                if (PlayerCard == null)
+                {
+                    Container.ImageLocation = "../../img/nullcard.png";
+                }
+                else
+                {
+                    Container.ImageLocation = $"../../{PlayerCard.getImgPath()}";
+                }
+
+                Container.Load();
+                MoveCards(true);
+            }
+            else
+            {
+                PictureBox Container = EnemyCardsContainer[(52 - EnemyDeck.getSize())];
+                EnemyCard = EnemyDeck.draw();
+
+                if (EnemyCard == null)
+                {
+                    Container.ImageLocation = "../../img/nullcard.png";
+                }
+                else
+                {
+                    Container.ImageLocation = $"../../{EnemyCard.getImgPath()}";
+                }
+
+                Container.Load();
+                MoveCards(false);
+            }
+        }
+
         private void MoveCards(bool isPlayer)
         {
             int cardnumber;
@@ -134,7 +166,6 @@ namespace Blackjack
                 // Fixed mystery card position
                 if (cardnumber == 1)
                 {
-                    Console.WriteLine("FIX");
                     EnemyCard0.Left = EnemyCard0.Left + 53;
                 }
 

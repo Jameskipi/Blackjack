@@ -1,4 +1,5 @@
 ﻿using Blackjack.cards;
+using Blackjack.data;
 using System.Windows.Forms;
 
 namespace Blackjack
@@ -20,6 +21,10 @@ namespace Blackjack
         // Create card containers
         private PictureBox[] PlayerCardsContainer = new PictureBox[10];
         private PictureBox[] EnemyCardsContainer = new PictureBox[10];
+
+        // Create data for saving purposes
+        private Player PlayerStats = new Player();
+        private Enemy EnemyStats = new Enemy();
 
         /// <summary>
         /// Wyczyść wszystkie używane zasoby.
@@ -311,6 +316,7 @@ namespace Blackjack
             this.Name = "Blackjack";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Blackjack_FormClosing);
             this.Load += new System.EventHandler(this.Blackjack_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PlayerCard0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard0)).EndInit();
