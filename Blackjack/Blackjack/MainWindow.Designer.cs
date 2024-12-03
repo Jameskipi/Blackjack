@@ -18,13 +18,18 @@ namespace Blackjack
         private Deck EnemyDeck = new Deck();
         private Card EnemyCard;
 
-        // Create card containers
+        // Create card pictures containers
         private PictureBox[] PlayerCardsContainer = new PictureBox[10];
         private PictureBox[] EnemyCardsContainer = new PictureBox[10];
+
+        // Create active cards containers
+        private Card[] PlayerActiveCards = new Card[10];
+        private Card[] EnemyActiveCards = new Card[10];
 
         // Create data for saving purposes
         private Player PlayerStats = new Player();
         private Enemy EnemyStats = new Enemy();
+
 
         /// <summary>
         /// Wyczyść wszystkie używane zasoby.
@@ -70,6 +75,10 @@ namespace Blackjack
             this.EnemyCard6 = new System.Windows.Forms.PictureBox();
             this.EnemyCard9 = new System.Windows.Forms.PictureBox();
             this.EnemyCard8 = new System.Windows.Forms.PictureBox();
+            this.player_scorebox = new System.Windows.Forms.Label();
+            this.player_maxbox = new System.Windows.Forms.Label();
+            this.enemy_maxbox = new System.Windows.Forms.Label();
+            this.enemy_scorebox = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerCard0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard1)).BeginInit();
@@ -282,11 +291,54 @@ namespace Blackjack
             this.EnemyCard8.TabIndex = 22;
             this.EnemyCard8.TabStop = false;
             // 
+            // player_scorebox
+            // 
+            this.player_scorebox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.player_scorebox.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.player_scorebox.Location = new System.Drawing.Point(573, 361);
+            this.player_scorebox.Name = "player_scorebox";
+            this.player_scorebox.Size = new System.Drawing.Size(44, 31);
+            this.player_scorebox.TabIndex = 24;
+            this.player_scorebox.Text = "0";
+            this.player_scorebox.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // player_maxbox
+            // 
+            this.player_maxbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.player_maxbox.Location = new System.Drawing.Point(623, 361);
+            this.player_maxbox.Name = "player_maxbox";
+            this.player_maxbox.Size = new System.Drawing.Size(52, 31);
+            this.player_maxbox.TabIndex = 25;
+            this.player_maxbox.Text = "/21";
+            // 
+            // enemy_maxbox
+            // 
+            this.enemy_maxbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.enemy_maxbox.Location = new System.Drawing.Point(623, 169);
+            this.enemy_maxbox.Name = "enemy_maxbox";
+            this.enemy_maxbox.Size = new System.Drawing.Size(52, 31);
+            this.enemy_maxbox.TabIndex = 27;
+            this.enemy_maxbox.Text = "/21";
+            // 
+            // enemy_scorebox
+            // 
+            this.enemy_scorebox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.enemy_scorebox.Location = new System.Drawing.Point(573, 169);
+            this.enemy_scorebox.Name = "enemy_scorebox";
+            this.enemy_scorebox.Size = new System.Drawing.Size(44, 31);
+            this.enemy_scorebox.TabIndex = 26;
+            this.enemy_scorebox.Text = "0";
+            this.enemy_scorebox.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // Blackjack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1234, 561);
+            this.Controls.Add(this.enemy_maxbox);
+            this.Controls.Add(this.enemy_scorebox);
+            this.Controls.Add(this.player_maxbox);
+            this.Controls.Add(this.player_scorebox);
             this.Controls.Add(this.EnemyCard9);
             this.Controls.Add(this.EnemyCard8);
             this.Controls.Add(this.EnemyCard7);
@@ -367,6 +419,10 @@ namespace Blackjack
         private PictureBox EnemyCard6;
         private PictureBox EnemyCard9;
         private PictureBox EnemyCard8;
+        private Label player_scorebox;
+        private Label player_maxbox;
+        private Label enemy_maxbox;
+        private Label enemy_scorebox;
     }
 }
 

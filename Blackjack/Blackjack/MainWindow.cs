@@ -40,10 +40,14 @@ namespace Blackjack
 
                 Console.WriteLine(PlayerStats.getMoneyAmount());
                 Console.WriteLine(EnemyStats.getMoneyAmount());
-            } 
+            }
             catch (FileNotFoundException)
             {
                 Console.WriteLine("ERROR: Save file not found. Progress will be restarted");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR: {ex}");
             }
 
             // Add PictureBoxes to containers
@@ -106,6 +110,7 @@ namespace Blackjack
             {
                 PictureBox Container = PlayerCardsContainer[(52 - PlayerDeck.getSize())];
                 PlayerCard = PlayerDeck.draw();
+                PlayerActiveCards[(51 - PlayerDeck.getSize())] = PlayerCard;
 
                 if (PlayerCard == null)
                 {
@@ -118,11 +123,13 @@ namespace Blackjack
 
                 Container.Load();
                 MoveCards(true);
+                UpdateScore(true);
             }
             else
             {
                 PictureBox Container = EnemyCardsContainer[(52 - EnemyDeck.getSize())];
                 EnemyCard = EnemyDeck.draw();
+                EnemyActiveCards[(51 - EnemyDeck.getSize())] = EnemyCard;
 
                 if (EnemyCard == null)
                 {
@@ -135,6 +142,7 @@ namespace Blackjack
 
                 Container.Load();
                 MoveCards(false);
+                UpdateScore(false);
             }
         }
 
@@ -180,6 +188,122 @@ namespace Blackjack
                 foreach (PictureBox box in EnemyCardsContainer)
                 {
                     box.Left = box.Left - 53;
+                }
+            }
+        }
+
+        private void UpdateScore(bool isPlayer)
+        {
+            if (isPlayer)
+            {
+                // Player score
+                int playerscore = 0;
+                Card[] Aces = new Card[4];
+                int aces_index = 0;
+
+                foreach (Card playercard in PlayerActiveCards)
+                {
+                    if (playercard != null)
+                    {
+                        if (playercard.getValue() == 1)
+                        {
+                            // Skip aces
+                            Aces[aces_index] = playercard;
+                            aces_index++;
+                        }
+                        else
+                        {
+                            playerscore += playercard.getValue();
+                        }
+                    }
+                }
+
+                // Aces value change
+                foreach(Card playercard in Aces)
+                {
+                    if (playercard != null)
+                    {
+                        int after_score = playerscore + 11;
+
+                        if (after_score <= 21)
+                        {
+                            playerscore += playercard.getValue() + 10;
+                        }
+                        else
+                        {
+                            playerscore += playercard.getValue();
+                        }
+                    }
+                }
+
+                // Show score
+                player_scorebox.Text = playerscore.ToString();
+
+                // If player busts
+                if (playerscore > 21)
+                {
+                    player_scorebox.ForeColor = Color.Red;
+                    Draw.Enabled = false;
+                }
+                else if (playerscore == 21)
+                {
+                    Draw.Enabled = false;
+                }
+            }
+            else
+            {
+                // Enemy score
+                int enemyscore = 0;
+                Card[] Aces = new Card[4];
+                int aces_index = 0;
+
+                foreach (Card enemycard in EnemyActiveCards)
+                {
+                    if (enemycard != null)
+                    {
+                        if (enemycard.getValue() == 1)
+                        {
+                            // Skip aces
+                            Aces[aces_index] = enemycard;
+                            aces_index++;
+                        }
+                        else
+                        {
+                            enemyscore += enemycard.getValue();
+                        }
+                    }
+                }
+
+                // Aces value change
+                foreach (Card enemycard in Aces)
+                {
+                    if (enemycard != null)
+                    {
+                        int after_score = enemyscore + 11;
+
+                        if (after_score <= 21)
+                        {
+                            enemyscore += enemycard.getValue() + 10;
+                        }
+                        else
+                        {
+                            enemyscore += enemycard.getValue();
+                        }
+                    }
+                }
+
+                // Show score
+                enemy_scorebox.Text = enemyscore.ToString();
+
+                // If enemy busts
+                if (enemyscore > 21)
+                {
+                    enemy_scorebox.ForeColor = Color.Red;
+                    EnemyDraw.Enabled = false;
+                }
+                else if (enemyscore == 21)
+                {
+                    EnemyDraw.Enabled = false;
                 }
             }
         }
