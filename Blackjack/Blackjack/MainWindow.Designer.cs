@@ -52,7 +52,7 @@ namespace Blackjack
         /// </summary>
         private void InitializeComponent()
         {
-            this.Draw = new System.Windows.Forms.Button();
+            this.Hit = new System.Windows.Forms.Button();
             this.PlayerCard0 = new System.Windows.Forms.PictureBox();
             this.Reset = new System.Windows.Forms.Button();
             this.EnemyCard0 = new System.Windows.Forms.PictureBox();
@@ -79,6 +79,8 @@ namespace Blackjack
             this.player_maxbox = new System.Windows.Forms.Label();
             this.enemy_maxbox = new System.Windows.Forms.Label();
             this.enemy_scorebox = new System.Windows.Forms.Label();
+            this.Stand = new System.Windows.Forms.Button();
+            this.ScoreResultBox = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerCard0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard1)).BeginInit();
@@ -101,15 +103,15 @@ namespace Blackjack
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard8)).BeginInit();
             this.SuspendLayout();
             // 
-            // Draw
+            // Hit
             // 
-            this.Draw.Location = new System.Drawing.Point(12, 479);
-            this.Draw.Name = "Draw";
-            this.Draw.Size = new System.Drawing.Size(75, 23);
-            this.Draw.TabIndex = 0;
-            this.Draw.Text = "Draw";
-            this.Draw.UseVisualStyleBackColor = true;
-            this.Draw.Click += new System.EventHandler(this.Draw_Click);
+            this.Hit.Location = new System.Drawing.Point(12, 395);
+            this.Hit.Name = "Hit";
+            this.Hit.Size = new System.Drawing.Size(75, 23);
+            this.Hit.TabIndex = 0;
+            this.Hit.Text = "Hit";
+            this.Hit.UseVisualStyleBackColor = true;
+            this.Hit.Click += new System.EventHandler(this.Draw_Click);
             // 
             // PlayerCard0
             // 
@@ -161,6 +163,7 @@ namespace Blackjack
             this.EnemyDraw.TabIndex = 7;
             this.EnemyDraw.Text = "EnemyDraw";
             this.EnemyDraw.UseVisualStyleBackColor = true;
+            this.EnemyDraw.Visible = false;
             this.EnemyDraw.Click += new System.EventHandler(this.EnemyDraw_Click);
             // 
             // PlayerCard2
@@ -330,11 +333,33 @@ namespace Blackjack
             this.enemy_scorebox.Text = "0";
             this.enemy_scorebox.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // Stand
+            // 
+            this.Stand.Location = new System.Drawing.Point(12, 424);
+            this.Stand.Name = "Stand";
+            this.Stand.Size = new System.Drawing.Size(75, 23);
+            this.Stand.TabIndex = 29;
+            this.Stand.Text = "Stand";
+            this.Stand.UseVisualStyleBackColor = true;
+            this.Stand.Click += new System.EventHandler(this.Stand_Click);
+            // 
+            // ScoreResultBox
+            // 
+            this.ScoreResultBox.AutoSize = true;
+            this.ScoreResultBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+            this.ScoreResultBox.Location = new System.Drawing.Point(573, 270);
+            this.ScoreResultBox.Name = "ScoreResultBox";
+            this.ScoreResultBox.Size = new System.Drawing.Size(21, 31);
+            this.ScoreResultBox.TabIndex = 30;
+            this.ScoreResultBox.Text = " ";
+            // 
             // Blackjack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1234, 561);
+            this.Controls.Add(this.ScoreResultBox);
+            this.Controls.Add(this.Stand);
             this.Controls.Add(this.enemy_maxbox);
             this.Controls.Add(this.enemy_scorebox);
             this.Controls.Add(this.player_maxbox);
@@ -361,7 +386,7 @@ namespace Blackjack
             this.Controls.Add(this.EnemyCard0);
             this.Controls.Add(this.Reset);
             this.Controls.Add(this.PlayerCard0);
-            this.Controls.Add(this.Draw);
+            this.Controls.Add(this.Hit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -391,12 +416,13 @@ namespace Blackjack
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard8)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button Draw;
+        private System.Windows.Forms.Button Hit;
         private System.Windows.Forms.PictureBox PlayerCard0;
         private System.Windows.Forms.Button Reset;
         private System.Windows.Forms.PictureBox EnemyCard0;
@@ -423,6 +449,8 @@ namespace Blackjack
         private Label player_maxbox;
         private Label enemy_maxbox;
         private Label enemy_scorebox;
+        private Button Stand;
+        private Label ScoreResultBox;
     }
 }
 

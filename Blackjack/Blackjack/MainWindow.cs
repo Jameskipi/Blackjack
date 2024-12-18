@@ -12,6 +12,7 @@ using System.Windows.Forms;
 
 using Newtonsoft.Json;
 using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Blackjack
 {
@@ -243,11 +244,18 @@ namespace Blackjack
                 if (playerscore > 21)
                 {
                     player_scorebox.ForeColor = Color.Red;
-                    Draw.Enabled = false;
+                    Hit.Enabled = false;
+                    Stand.Enabled = false;
+                    Console.WriteLine(PlayerDeck.getSize());
+                    PlayerBust();
                 }
-                else if (playerscore == 21)
+                else if (playerscore == 21 && PlayerDeck.getSize() != 50)
                 {
-                    Draw.Enabled = false;
+                    Hit.Enabled = false;
+                }
+                else if (playerscore == 21 && PlayerDeck.getSize() == 50)
+                {
+                    Natural();
                 }
             }
             else
@@ -308,6 +316,49 @@ namespace Blackjack
             }
         }
 
+        private void PlayerBust()
+        {
+            Hit.Enabled = false;
+            Stand.Enabled = false;
+            ScoreResultBox.Text = "BUST";
+            ScoreResultBox.ForeColor = Color.Red;
+        }
+
+        private void Natural()
+        {
+            Hit.Enabled = false;
+            Stand.Enabled = false;
+            ScoreResultBox.Text = "BLACKJACK";
+
+            int firstcardvalue = EnemyActiveCards[0].getValue();
+
+            // Check if enemy doesn't have blackjack too
+            if (firstcardvalue == 10 || firstcardvalue == 11) {
+                Stand_Click(this, new EventArgs());
+            }
+        }
+
+        private void Wait(int milliseconds)
+        {
+            var timer = new System.Windows.Forms.Timer();
+            if (milliseconds == 0 || milliseconds < 0) return;
+
+            timer.Interval = milliseconds;
+            timer.Enabled = true;
+            timer.Start();
+
+            timer.Tick += (s, e) =>
+            {
+                timer.Enabled = false;
+                timer.Stop();
+            };
+
+            while (timer.Enabled)
+            {
+                Application.DoEvents();
+            }
+        }
+
         private void Reset_Click(object sender, EventArgs e)
         {
             PlayerDeck.reset();
@@ -333,6 +384,39 @@ namespace Blackjack
             }
 
             DrawCard(false);
+        }
+
+        private void Stand_Click(object sender, EventArgs e)
+        {
+            while (Int32.Parse(enemy_scorebox.Text) < 17)
+            {
+                if (Int32.Parse(enemy_scorebox.Text) > Int32.Parse(player_scorebox.Text))
+                {
+                    break;
+                }
+
+                DrawCard(false);
+                Wait(1000);
+            }
+
+            Hit.Enabled = false;
+            Stand.Enabled = false;
+
+            int enemyscore = Int32.Parse(enemy_scorebox.Text);
+            int playerscore = Int32.Parse(player_scorebox.Text);
+
+            if (enemyscore > playerscore && enemyscore <= 21)
+            {
+                ScoreResultBox.Text = "LOSE";
+            }
+            else if (enemyscore == playerscore)
+            {
+                ScoreResultBox.Text = "DRAW";
+            }
+            else
+            {
+                ScoreResultBox.Text = "WIN";
+            }
         }
     }
 }
