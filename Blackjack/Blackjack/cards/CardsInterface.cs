@@ -8,15 +8,15 @@ namespace Blackjack.cards
 {
     internal interface CardsInterface
     {
-        string getName();
-        int getValue();
-        string getImgPath();
+        string GetName();
+        int GetValue();
+        string GetImgPath();
     }
 
     internal interface DeckInterface
     {
-        void reset();
-        Card draw();
-        int getSize();
+        void Reset();
+        Card Draw();
+        int GetSize();
     }
 }

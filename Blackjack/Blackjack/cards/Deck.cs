@@ -62,7 +62,7 @@ namespace Blackjack.cards
             }
         }
 
-        public Card draw()
+        public Card Draw()
         {
             if (size == 0)
             {
@@ -75,36 +75,36 @@ namespace Blackjack.cards
                 index = rnd.Next(max_size);
                 current_card = cards[index];
             }
-            while (current_card.isUsed());
+            while (current_card.IsUsed());
 
             size = size - 1;
-            current_card.setUsed(true);
+            current_card.SetUsed(true);
 
             return current_card;
         }
 
-        public int getSize()
+        public int GetSize()
         {
             return size;
         }
 
-        public void reset()
+        public void Reset()
         {
             size = max_size;
 
             for (int i = 0; i < max_size; i++)
             {
-                cards[i].setUsed(false);
+                cards[i].SetUsed(false);
             }
         }
 
-        public void show()
+        public void Show()
         {
             for (int i = 0; i < max_size; i++)
             {
-                if (cards[i].isUsed() == false)
+                if (cards[i].IsUsed() == false)
                 {
-                    Console.WriteLine($"{i}. {cards[i].getName()}");
+                    Console.WriteLine($"{i}. {cards[i].GetName()}");
                 }
             }
         }

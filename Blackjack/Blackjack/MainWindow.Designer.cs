@@ -123,7 +123,7 @@ namespace Blackjack
             // 
             // Reset
             // 
-            this.Reset.Location = new System.Drawing.Point(1153, 479);
+            this.Reset.Location = new System.Drawing.Point(1153, 395);
             this.Reset.Name = "Reset";
             this.Reset.Size = new System.Drawing.Size(75, 23);
             this.Reset.TabIndex = 2;
@@ -298,40 +298,42 @@ namespace Blackjack
             // 
             this.player_scorebox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.player_scorebox.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.player_scorebox.Location = new System.Drawing.Point(573, 361);
+            this.player_scorebox.Location = new System.Drawing.Point(517, 361);
             this.player_scorebox.Name = "player_scorebox";
-            this.player_scorebox.Size = new System.Drawing.Size(44, 31);
+            this.player_scorebox.Size = new System.Drawing.Size(100, 31);
             this.player_scorebox.TabIndex = 24;
             this.player_scorebox.Text = "0";
-            this.player_scorebox.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.player_scorebox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // player_maxbox
             // 
             this.player_maxbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.player_maxbox.Location = new System.Drawing.Point(623, 361);
             this.player_maxbox.Name = "player_maxbox";
-            this.player_maxbox.Size = new System.Drawing.Size(52, 31);
+            this.player_maxbox.Size = new System.Drawing.Size(100, 31);
             this.player_maxbox.TabIndex = 25;
             this.player_maxbox.Text = "/21";
+            this.player_maxbox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // enemy_maxbox
             // 
             this.enemy_maxbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.enemy_maxbox.Location = new System.Drawing.Point(623, 169);
             this.enemy_maxbox.Name = "enemy_maxbox";
-            this.enemy_maxbox.Size = new System.Drawing.Size(52, 31);
+            this.enemy_maxbox.Size = new System.Drawing.Size(100, 31);
             this.enemy_maxbox.TabIndex = 27;
             this.enemy_maxbox.Text = "/21";
+            this.enemy_maxbox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // enemy_scorebox
             // 
             this.enemy_scorebox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.enemy_scorebox.Location = new System.Drawing.Point(573, 169);
+            this.enemy_scorebox.Location = new System.Drawing.Point(517, 169);
             this.enemy_scorebox.Name = "enemy_scorebox";
-            this.enemy_scorebox.Size = new System.Drawing.Size(44, 31);
+            this.enemy_scorebox.Size = new System.Drawing.Size(100, 31);
             this.enemy_scorebox.TabIndex = 26;
             this.enemy_scorebox.Text = "0";
-            this.enemy_scorebox.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.enemy_scorebox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Stand
             // 
@@ -345,13 +347,13 @@ namespace Blackjack
             // 
             // ScoreResultBox
             // 
-            this.ScoreResultBox.AutoSize = true;
             this.ScoreResultBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.ScoreResultBox.Location = new System.Drawing.Point(573, 270);
+            this.ScoreResultBox.Location = new System.Drawing.Point(517, 270);
             this.ScoreResultBox.Name = "ScoreResultBox";
-            this.ScoreResultBox.Size = new System.Drawing.Size(21, 31);
+            this.ScoreResultBox.Size = new System.Drawing.Size(206, 31);
             this.ScoreResultBox.TabIndex = 30;
             this.ScoreResultBox.Text = " ";
+            this.ScoreResultBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Blackjack
             // 
@@ -392,7 +394,7 @@ namespace Blackjack
             this.MinimizeBox = false;
             this.Name = "Blackjack";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Blackjack";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Blackjack_FormClosing);
             this.Load += new System.EventHandler(this.Blackjack_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PlayerCard0)).EndInit();
@@ -416,7 +418,6 @@ namespace Blackjack
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard8)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

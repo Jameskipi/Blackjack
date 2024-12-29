@@ -21,27 +21,27 @@ namespace Blackjack.cards
             this.imgpath = imgpath;
         }
 
-        public string getName()
+        public string GetName()
         {
             return name;
         }
 
-        public int getValue()
+        public int GetValue()
         {
             return value;
         }
 
-        public string getImgPath()
+        public string GetImgPath()
         {
             return imgpath;
         }
 
-        public void setUsed(bool used) 
+        public void SetUsed(bool used) 
         {
             this.used = used;
         }
 
-        public bool isUsed()
+        public bool IsUsed()
         {
             return used;
         }

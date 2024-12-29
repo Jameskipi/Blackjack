@@ -21,17 +21,17 @@ namespace Blackjack.data
 
         public Player() { }
 
-        public string getName()
+        public string GetName()
         {
             return name;
         }
 
-        public decimal getMoneyAmount()
+        public decimal GetMoneyAmount()
         {
             return money;
         }
 
-        public int getWinStreak()
+        public int GetWinStreak()
         {
             return winstreak;
         }

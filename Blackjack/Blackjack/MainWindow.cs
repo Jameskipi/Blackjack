@@ -27,8 +27,6 @@ namespace Blackjack
         {
             // Start
             Console.WriteLine("Started");
-            PlayerDeck.show();
-            EnemyDeck.show();
 
             // Load save data
             try
@@ -39,8 +37,8 @@ namespace Blackjack
                 PlayerStats = JsonConvert.DeserializeObject<data.Player>(playerdata);
                 EnemyStats = JsonConvert.DeserializeObject<data.Enemy>(enemydata);
 
-                Console.WriteLine(PlayerStats.getMoneyAmount());
-                Console.WriteLine(EnemyStats.getMoneyAmount());
+                Console.WriteLine(PlayerStats.GetMoneyAmount());
+                Console.WriteLine(EnemyStats.GetMoneyAmount());
             }
             catch (FileNotFoundException)
             {
@@ -109,9 +107,9 @@ namespace Blackjack
         {
             if (isPlayer)
             {
-                PictureBox Container = PlayerCardsContainer[(52 - PlayerDeck.getSize())];
-                PlayerCard = PlayerDeck.draw();
-                PlayerActiveCards[(51 - PlayerDeck.getSize())] = PlayerCard;
+                PictureBox Container = PlayerCardsContainer[(52 - PlayerDeck.GetSize())];
+                PlayerCard = PlayerDeck.Draw();
+                PlayerActiveCards[(51 - PlayerDeck.GetSize())] = PlayerCard;
 
                 if (PlayerCard == null)
                 {
@@ -119,7 +117,7 @@ namespace Blackjack
                 }
                 else
                 {
-                    Container.ImageLocation = $"../../{PlayerCard.getImgPath()}";
+                    Container.ImageLocation = $"../../{PlayerCard.GetImgPath()}";
                 }
 
                 Container.Load();
@@ -128,9 +126,9 @@ namespace Blackjack
             }
             else
             {
-                PictureBox Container = EnemyCardsContainer[(52 - EnemyDeck.getSize())];
-                EnemyCard = EnemyDeck.draw();
-                EnemyActiveCards[(51 - EnemyDeck.getSize())] = EnemyCard;
+                PictureBox Container = EnemyCardsContainer[(52 - EnemyDeck.GetSize())];
+                EnemyCard = EnemyDeck.Draw();
+                EnemyActiveCards[(51 - EnemyDeck.GetSize())] = EnemyCard;
 
                 if (EnemyCard == null)
                 {
@@ -138,7 +136,7 @@ namespace Blackjack
                 }
                 else
                 {
-                    Container.ImageLocation = $"../../{EnemyCard.getImgPath()}";
+                    Container.ImageLocation = $"../../{EnemyCard.GetImgPath()}";
                 }
 
                 Container.Load();
@@ -153,7 +151,7 @@ namespace Blackjack
 
             if (isPlayer)
             {
-                cardnumber = 51 - PlayerDeck.getSize();
+                cardnumber = 51 - PlayerDeck.GetSize();
 
                 PlayerCardsContainer[cardnumber].Left = ((this.ClientSize.Width - PlayerCardsContainer[cardnumber].Width) / 2) + 53;
                 PlayerCardsContainer[cardnumber].Visible = true;
@@ -170,7 +168,7 @@ namespace Blackjack
             }
             else
             {
-                cardnumber = 51 - EnemyDeck.getSize();
+                cardnumber = 51 - EnemyDeck.GetSize();
 
                 // Fixed mystery card position
                 if (cardnumber == 1)
@@ -206,7 +204,7 @@ namespace Blackjack
                 {
                     if (playercard != null)
                     {
-                        if (playercard.getValue() == 1)
+                        if (playercard.GetValue() == 1)
                         {
                             // Skip aces
                             Aces[aces_index] = playercard;
@@ -214,7 +212,7 @@ namespace Blackjack
                         }
                         else
                         {
-                            playerscore += playercard.getValue();
+                            playerscore += playercard.GetValue();
                         }
                     }
                 }
@@ -228,11 +226,11 @@ namespace Blackjack
 
                         if (after_score <= 21)
                         {
-                            playerscore += playercard.getValue() + 10;
+                            playerscore += playercard.GetValue() + 10;
                         }
                         else
                         {
-                            playerscore += playercard.getValue();
+                            playerscore += playercard.GetValue();
                         }
                     }
                 }
@@ -246,14 +244,14 @@ namespace Blackjack
                     player_scorebox.ForeColor = Color.Red;
                     Hit.Enabled = false;
                     Stand.Enabled = false;
-                    Console.WriteLine(PlayerDeck.getSize());
+                    Console.WriteLine(PlayerDeck.GetSize());
                     PlayerBust();
                 }
-                else if (playerscore == 21 && PlayerDeck.getSize() != 50)
+                else if (playerscore == 21 && PlayerDeck.GetSize() != 50)
                 {
                     Hit.Enabled = false;
                 }
-                else if (playerscore == 21 && PlayerDeck.getSize() == 50)
+                else if (playerscore == 21 && PlayerDeck.GetSize() == 50)
                 {
                     Natural();
                 }
@@ -269,7 +267,7 @@ namespace Blackjack
                 {
                     if (enemycard != null)
                     {
-                        if (enemycard.getValue() == 1)
+                        if (enemycard.GetValue() == 1)
                         {
                             // Skip aces
                             Aces[aces_index] = enemycard;
@@ -277,7 +275,7 @@ namespace Blackjack
                         }
                         else
                         {
-                            enemyscore += enemycard.getValue();
+                            enemyscore += enemycard.GetValue();
                         }
                     }
                 }
@@ -291,11 +289,11 @@ namespace Blackjack
 
                         if (after_score <= 21)
                         {
-                            enemyscore += enemycard.getValue() + 10;
+                            enemyscore += enemycard.GetValue() + 10;
                         }
                         else
                         {
-                            enemyscore += enemycard.getValue();
+                            enemyscore += enemycard.GetValue();
                         }
                     }
                 }
@@ -330,7 +328,7 @@ namespace Blackjack
             Stand.Enabled = false;
             ScoreResultBox.Text = "BLACKJACK";
 
-            int firstcardvalue = EnemyActiveCards[0].getValue();
+            int firstcardvalue = EnemyActiveCards[0].GetValue();
 
             // Check if enemy doesn't have blackjack too
             if (firstcardvalue == 10 || firstcardvalue == 11) {
@@ -361,14 +359,32 @@ namespace Blackjack
 
         private void Reset_Click(object sender, EventArgs e)
         {
-            PlayerDeck.reset();
-            EnemyDeck.reset();
-            Application.Restart();
+            PlayerDeck.Reset();
+            EnemyDeck.Reset();
+
+            PlayerCardsContainer = new PictureBox[10];
+            EnemyCardsContainer = new PictureBox[10];
+
+            PlayerActiveCards = new Card[10];
+            EnemyActiveCards = new Card[10];
+
+            enemy_scorebox.ForeColor = Color.Black;
+            player_scorebox.ForeColor = Color.Black;
+
+            ScoreResultBox.ForeColor = Color.Black;
+            ScoreResultBox.Text = "";
+
+            Hit.Enabled = true;
+            Stand.Enabled = true;
+
+            UpdateScore(true);
+
+            Blackjack_Load(this, new EventArgs());
         }
 
         private void Draw_Click(object sender, EventArgs e)
         {
-            if ((52 - PlayerDeck.getSize()) >= 10)
+            if ((52 - PlayerDeck.GetSize()) >= 10)
             {
                 return;
             }
@@ -378,7 +394,7 @@ namespace Blackjack
 
         private void EnemyDraw_Click(object sender, EventArgs e)
         {
-            if ((52 - EnemyDeck.getSize()) >= 10)
+            if ((52 - EnemyDeck.GetSize()) >= 10)
             {
                 return;
             }
@@ -388,6 +404,9 @@ namespace Blackjack
 
         private void Stand_Click(object sender, EventArgs e)
         {
+            Hit.Enabled = false;
+            Stand.Enabled = false;
+
             while (Int32.Parse(enemy_scorebox.Text) < 17)
             {
                 if (Int32.Parse(enemy_scorebox.Text) > Int32.Parse(player_scorebox.Text))
@@ -398,9 +417,6 @@ namespace Blackjack
                 DrawCard(false);
                 Wait(1000);
             }
-
-            Hit.Enabled = false;
-            Stand.Enabled = false;
 
             int enemyscore = Int32.Parse(enemy_scorebox.Text);
             int playerscore = Int32.Parse(player_scorebox.Text);

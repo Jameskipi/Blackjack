@@ -8,8 +8,8 @@ namespace Blackjack.data
 {
     internal interface PlayersInterface
     {
-        string getName();
-        decimal getMoneyAmount();
-        int getWinStreak();
+        string GetName();
+        decimal GetMoneyAmount();
+        int GetWinStreak();
     }
 }
