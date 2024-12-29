@@ -52,6 +52,8 @@
     <Compile Include="cards\CardsInterface.cs" />
     <Compile Include="cards\Card.cs" />
     <Compile Include="cards\Deck.cs" />
+    <Compile Include="MainScripts.cs" />
+    <Compile Include="Initial.cs" />
     <Compile Include="data\DataInterface.cs" />
     <Compile Include="data\Enemy.cs" />
     <Compile Include="data\Player.cs" />

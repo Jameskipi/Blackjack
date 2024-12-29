@@ -10,26 +10,6 @@ namespace Blackjack
         /// Wymagana zmienna projektanta.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        
-        // Create decks for cards
-        private Deck PlayerDeck = new Deck();
-        private Card PlayerCard;
-
-        private Deck EnemyDeck = new Deck();
-        private Card EnemyCard;
-
-        // Create card pictures containers
-        private PictureBox[] PlayerCardsContainer = new PictureBox[10];
-        private PictureBox[] EnemyCardsContainer = new PictureBox[10];
-
-        // Create active cards containers
-        private Card[] PlayerActiveCards = new Card[10];
-        private Card[] EnemyActiveCards = new Card[10];
-
-        // Create data for saving purposes
-        private Player PlayerStats = new Player();
-        private Enemy EnemyStats = new Enemy();
-
 
         /// <summary>
         /// Wyczyść wszystkie używane zasoby.
@@ -58,7 +38,6 @@ namespace Blackjack
             this.EnemyCard0 = new System.Windows.Forms.PictureBox();
             this.EnemyCard1 = new System.Windows.Forms.PictureBox();
             this.PlayerCard1 = new System.Windows.Forms.PictureBox();
-            this.EnemyDraw = new System.Windows.Forms.Button();
             this.PlayerCard2 = new System.Windows.Forms.PictureBox();
             this.PlayerCard5 = new System.Windows.Forms.PictureBox();
             this.PlayerCard4 = new System.Windows.Forms.PictureBox();
@@ -154,17 +133,6 @@ namespace Blackjack
             this.PlayerCard1.Size = new System.Drawing.Size(100, 154);
             this.PlayerCard1.TabIndex = 6;
             this.PlayerCard1.TabStop = false;
-            // 
-            // EnemyDraw
-            // 
-            this.EnemyDraw.Location = new System.Drawing.Point(12, 65);
-            this.EnemyDraw.Name = "EnemyDraw";
-            this.EnemyDraw.Size = new System.Drawing.Size(75, 23);
-            this.EnemyDraw.TabIndex = 7;
-            this.EnemyDraw.Text = "EnemyDraw";
-            this.EnemyDraw.UseVisualStyleBackColor = true;
-            this.EnemyDraw.Visible = false;
-            this.EnemyDraw.Click += new System.EventHandler(this.EnemyDraw_Click);
             // 
             // PlayerCard2
             // 
@@ -382,7 +350,6 @@ namespace Blackjack
             this.Controls.Add(this.PlayerCard4);
             this.Controls.Add(this.PlayerCard3);
             this.Controls.Add(this.PlayerCard2);
-            this.Controls.Add(this.EnemyDraw);
             this.Controls.Add(this.PlayerCard1);
             this.Controls.Add(this.EnemyCard1);
             this.Controls.Add(this.EnemyCard0);
@@ -429,7 +396,6 @@ namespace Blackjack
         private System.Windows.Forms.PictureBox EnemyCard0;
         private System.Windows.Forms.PictureBox EnemyCard1;
         private PictureBox PlayerCard1;
-        private Button EnemyDraw;
         private PictureBox PlayerCard2;
         private PictureBox PlayerCard5;
         private PictureBox PlayerCard4;
