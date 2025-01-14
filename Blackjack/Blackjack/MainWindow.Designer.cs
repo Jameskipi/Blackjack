@@ -316,7 +316,7 @@ namespace Blackjack
             // ScoreResultBox
             // 
             this.ScoreResultBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.ScoreResultBox.Location = new System.Drawing.Point(517, 270);
+            this.ScoreResultBox.Location = new System.Drawing.Point(517, 250);
             this.ScoreResultBox.Name = "ScoreResultBox";
             this.ScoreResultBox.Size = new System.Drawing.Size(206, 31);
             this.ScoreResultBox.TabIndex = 30;
