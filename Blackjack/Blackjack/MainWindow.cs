@@ -89,6 +89,10 @@ namespace Blackjack
             EnemyCard1.Visible = true;
             EnemyCard0.Left = ((this.ClientSize.Width - EnemyCard1.Width) / 2) - 53;
             EnemyCard1.Left = ((this.ClientSize.Width - EnemyCard1.Width) / 2) + 53;
+
+            // Force player to bet
+            Hit.Enabled = false;
+            Stand.Enabled = false;
         }
 
         private void Blackjack_FormClosing(object sender, FormClosingEventArgs e)
@@ -105,6 +109,8 @@ namespace Blackjack
 
         private void Reset_Click(object sender, EventArgs e)
         {
+            // Next round function
+
             PlayerDeck.Reset();
             EnemyDeck.Reset();
 
@@ -114,14 +120,26 @@ namespace Blackjack
             PlayerActiveCards = new Card[10];
             EnemyActiveCards = new Card[10];
 
-            enemy_scorebox.ForeColor = Color.Black;
-            player_scorebox.ForeColor = Color.Black;
+            EnemyScoreBox.ForeColor = Color.Black;
+            PlayerScoreBox.ForeColor = Color.Black;
 
-            ScoreResultBox.ForeColor = Color.Black;
-            ScoreResultBox.Text = "";
+            ResultBox.ForeColor = Color.Black;
+            ResultBox.Text = "";
 
-            Hit.Enabled = true;
-            Stand.Enabled = true;
+            StakeBox.ForeColor = Color.DarkGreen;
+            StakeBox.Text = "10$";
+            CustomBet.Value = 10;
+
+            Plus10Button.Visible = true;
+            Plus100Button.Visible = true;
+            Plus1000Button.Visible = true;
+            Minus10Button.Visible = true;
+            Minus100Button.Visible = true;
+            Minus1000Button.Visible = true;
+            CustomBet.Visible = true;
+            BetButton.Visible = true;
+
+            CustomBet.Value = previous_bet;
 
             UpdatePlayerScore();
             UpdateEnemyScore();
@@ -144,9 +162,9 @@ namespace Blackjack
             Hit.Enabled = false;
             Stand.Enabled = false;
 
-            while (Int32.Parse(enemy_scorebox.Text) < 17)
+            while (Int32.Parse(EnemyScoreBox.Text) < 17)
             {
-                if (Int32.Parse(enemy_scorebox.Text) > Int32.Parse(player_scorebox.Text))
+                if (Int32.Parse(EnemyScoreBox.Text) > Int32.Parse(PlayerScoreBox.Text))
                 {
                     break;
                 }
@@ -155,21 +173,66 @@ namespace Blackjack
                 Wait(1000);
             }
 
-            int enemyscore = Int32.Parse(enemy_scorebox.Text);
-            int playerscore = Int32.Parse(player_scorebox.Text);
+            int enemyscore = Int32.Parse(EnemyScoreBox.Text);
+            int playerscore = Int32.Parse(PlayerScoreBox.Text);
 
             if (enemyscore > playerscore && enemyscore <= 21)
             {
-                ScoreResultBox.Text = "LOSE";
+                ResultBox.Text = "LOSE";
             }
             else if (enemyscore == playerscore)
             {
-                ScoreResultBox.Text = "DRAW";
+                ResultBox.Text = "DRAW";
             }
             else
             {
-                ScoreResultBox.Text = "WIN";
+                ResultBox.Text = "WIN";
             }
+        }
+
+        private void Plus10Button_Click(object sender, EventArgs e)
+        {
+            ChangeBet(10);
+        }
+
+        private void Plus100Button_Click(object sender, EventArgs e)
+        {
+            ChangeBet(100);
+        }
+
+        private void Plus1000Button_Click(object sender, EventArgs e)
+        {
+            ChangeBet(1000);
+        }
+
+        private void Minus10Button_Click(object sender, EventArgs e)
+        {
+            ChangeBet(-10);
+        }
+
+        private void Minus100Button_Click(object sender, EventArgs e)
+        {
+            ChangeBet(-100);
+        }
+
+        private void Minus1000Button_Click(object sender, EventArgs e)
+        {
+            ChangeBet(-1000);
+        }
+
+        private void BetButton_Click(object sender, EventArgs e)
+        {
+            BetConfirm(CustomBet.Value);
+        }
+
+        private void CustomBet_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateBet();
+        }
+
+        private void CustomBet_KeyUp(object sender, KeyEventArgs e)
+        {
+            UpdateBet();
         }
     }
 }

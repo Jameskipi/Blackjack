@@ -34,5 +34,8 @@ namespace Blackjack
         // Create data for saving purposes
         private Player PlayerStats = new Player();
         private Enemy EnemyStats = new Enemy();
+
+        // Global variables
+        private decimal previous_bet;
     }
 }

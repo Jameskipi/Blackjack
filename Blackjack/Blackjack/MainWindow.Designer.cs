@@ -54,12 +54,22 @@ namespace Blackjack
             this.EnemyCard6 = new System.Windows.Forms.PictureBox();
             this.EnemyCard9 = new System.Windows.Forms.PictureBox();
             this.EnemyCard8 = new System.Windows.Forms.PictureBox();
-            this.player_scorebox = new System.Windows.Forms.Label();
-            this.player_maxbox = new System.Windows.Forms.Label();
-            this.enemy_maxbox = new System.Windows.Forms.Label();
-            this.enemy_scorebox = new System.Windows.Forms.Label();
+            this.PlayerScoreBox = new System.Windows.Forms.Label();
+            this.PlayerMaxBox = new System.Windows.Forms.Label();
+            this.EnemyMaxBox = new System.Windows.Forms.Label();
+            this.EnemyScoreBox = new System.Windows.Forms.Label();
             this.Stand = new System.Windows.Forms.Button();
-            this.ScoreResultBox = new System.Windows.Forms.Label();
+            this.ResultBox = new System.Windows.Forms.Label();
+            this.StakeLabel = new System.Windows.Forms.Label();
+            this.StakeBox = new System.Windows.Forms.Label();
+            this.Minus10Button = new System.Windows.Forms.Button();
+            this.Minus100Button = new System.Windows.Forms.Button();
+            this.Minus1000Button = new System.Windows.Forms.Button();
+            this.Plus1000Button = new System.Windows.Forms.Button();
+            this.Plus100Button = new System.Windows.Forms.Button();
+            this.Plus10Button = new System.Windows.Forms.Button();
+            this.BetButton = new System.Windows.Forms.Button();
+            this.CustomBet = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerCard0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard1)).BeginInit();
@@ -80,6 +90,7 @@ namespace Blackjack
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomBet)).BeginInit();
             this.SuspendLayout();
             // 
             // Hit
@@ -262,46 +273,46 @@ namespace Blackjack
             this.EnemyCard8.TabIndex = 22;
             this.EnemyCard8.TabStop = false;
             // 
-            // player_scorebox
+            // PlayerScoreBox
             // 
-            this.player_scorebox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.player_scorebox.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.player_scorebox.Location = new System.Drawing.Point(517, 361);
-            this.player_scorebox.Name = "player_scorebox";
-            this.player_scorebox.Size = new System.Drawing.Size(100, 31);
-            this.player_scorebox.TabIndex = 24;
-            this.player_scorebox.Text = "0";
-            this.player_scorebox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.PlayerScoreBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.PlayerScoreBox.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.PlayerScoreBox.Location = new System.Drawing.Point(517, 361);
+            this.PlayerScoreBox.Name = "PlayerScoreBox";
+            this.PlayerScoreBox.Size = new System.Drawing.Size(100, 31);
+            this.PlayerScoreBox.TabIndex = 24;
+            this.PlayerScoreBox.Text = "0";
+            this.PlayerScoreBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // player_maxbox
+            // PlayerMaxBox
             // 
-            this.player_maxbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.player_maxbox.Location = new System.Drawing.Point(623, 361);
-            this.player_maxbox.Name = "player_maxbox";
-            this.player_maxbox.Size = new System.Drawing.Size(100, 31);
-            this.player_maxbox.TabIndex = 25;
-            this.player_maxbox.Text = "/21";
-            this.player_maxbox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.PlayerMaxBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.PlayerMaxBox.Location = new System.Drawing.Point(623, 361);
+            this.PlayerMaxBox.Name = "PlayerMaxBox";
+            this.PlayerMaxBox.Size = new System.Drawing.Size(100, 31);
+            this.PlayerMaxBox.TabIndex = 25;
+            this.PlayerMaxBox.Text = "/21";
+            this.PlayerMaxBox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // enemy_maxbox
+            // EnemyMaxBox
             // 
-            this.enemy_maxbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.enemy_maxbox.Location = new System.Drawing.Point(623, 169);
-            this.enemy_maxbox.Name = "enemy_maxbox";
-            this.enemy_maxbox.Size = new System.Drawing.Size(100, 31);
-            this.enemy_maxbox.TabIndex = 27;
-            this.enemy_maxbox.Text = "/21";
-            this.enemy_maxbox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.EnemyMaxBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.EnemyMaxBox.Location = new System.Drawing.Point(623, 169);
+            this.EnemyMaxBox.Name = "EnemyMaxBox";
+            this.EnemyMaxBox.Size = new System.Drawing.Size(100, 31);
+            this.EnemyMaxBox.TabIndex = 27;
+            this.EnemyMaxBox.Text = "/21";
+            this.EnemyMaxBox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // enemy_scorebox
+            // EnemyScoreBox
             // 
-            this.enemy_scorebox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.enemy_scorebox.Location = new System.Drawing.Point(517, 169);
-            this.enemy_scorebox.Name = "enemy_scorebox";
-            this.enemy_scorebox.Size = new System.Drawing.Size(100, 31);
-            this.enemy_scorebox.TabIndex = 26;
-            this.enemy_scorebox.Text = "0";
-            this.enemy_scorebox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.EnemyScoreBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.EnemyScoreBox.Location = new System.Drawing.Point(517, 169);
+            this.EnemyScoreBox.Name = "EnemyScoreBox";
+            this.EnemyScoreBox.Size = new System.Drawing.Size(100, 31);
+            this.EnemyScoreBox.TabIndex = 26;
+            this.EnemyScoreBox.Text = "0";
+            this.EnemyScoreBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Stand
             // 
@@ -313,27 +324,148 @@ namespace Blackjack
             this.Stand.UseVisualStyleBackColor = true;
             this.Stand.Click += new System.EventHandler(this.Stand_Click);
             // 
-            // ScoreResultBox
+            // ResultBox
             // 
-            this.ScoreResultBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.ScoreResultBox.Location = new System.Drawing.Point(517, 250);
-            this.ScoreResultBox.Name = "ScoreResultBox";
-            this.ScoreResultBox.Size = new System.Drawing.Size(206, 31);
-            this.ScoreResultBox.TabIndex = 30;
-            this.ScoreResultBox.Text = " ";
-            this.ScoreResultBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ResultBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+            this.ResultBox.Location = new System.Drawing.Point(517, 250);
+            this.ResultBox.Name = "ResultBox";
+            this.ResultBox.Size = new System.Drawing.Size(206, 31);
+            this.ResultBox.TabIndex = 30;
+            this.ResultBox.Text = " ";
+            this.ResultBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // StakeLabel
+            // 
+            this.StakeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+            this.StakeLabel.Location = new System.Drawing.Point(517, 281);
+            this.StakeLabel.Name = "StakeLabel";
+            this.StakeLabel.Size = new System.Drawing.Size(100, 31);
+            this.StakeLabel.TabIndex = 31;
+            this.StakeLabel.Text = "Stake:";
+            this.StakeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // StakeBox
+            // 
+            this.StakeBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+            this.StakeBox.ForeColor = System.Drawing.Color.DarkGreen;
+            this.StakeBox.Location = new System.Drawing.Point(607, 281);
+            this.StakeBox.Name = "StakeBox";
+            this.StakeBox.Size = new System.Drawing.Size(170, 31);
+            this.StakeBox.TabIndex = 32;
+            this.StakeBox.Text = "10$";
+            this.StakeBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Minus10Button
+            // 
+            this.Minus10Button.Location = new System.Drawing.Point(796, 239);
+            this.Minus10Button.Name = "Minus10Button";
+            this.Minus10Button.Size = new System.Drawing.Size(75, 23);
+            this.Minus10Button.TabIndex = 33;
+            this.Minus10Button.Text = "-10$";
+            this.Minus10Button.UseVisualStyleBackColor = true;
+            this.Minus10Button.Click += new System.EventHandler(this.Minus10Button_Click);
+            // 
+            // Minus100Button
+            // 
+            this.Minus100Button.Location = new System.Drawing.Point(796, 268);
+            this.Minus100Button.Name = "Minus100Button";
+            this.Minus100Button.Size = new System.Drawing.Size(75, 23);
+            this.Minus100Button.TabIndex = 34;
+            this.Minus100Button.Text = "-100$";
+            this.Minus100Button.UseVisualStyleBackColor = true;
+            this.Minus100Button.Click += new System.EventHandler(this.Minus100Button_Click);
+            // 
+            // Minus1000Button
+            // 
+            this.Minus1000Button.Location = new System.Drawing.Point(796, 297);
+            this.Minus1000Button.Name = "Minus1000Button";
+            this.Minus1000Button.Size = new System.Drawing.Size(75, 23);
+            this.Minus1000Button.TabIndex = 35;
+            this.Minus1000Button.Text = "-1000$";
+            this.Minus1000Button.UseVisualStyleBackColor = true;
+            this.Minus1000Button.Click += new System.EventHandler(this.Minus1000Button_Click);
+            // 
+            // Plus1000Button
+            // 
+            this.Plus1000Button.Location = new System.Drawing.Point(877, 297);
+            this.Plus1000Button.Name = "Plus1000Button";
+            this.Plus1000Button.Size = new System.Drawing.Size(75, 23);
+            this.Plus1000Button.TabIndex = 38;
+            this.Plus1000Button.Text = "+1000$";
+            this.Plus1000Button.UseVisualStyleBackColor = true;
+            this.Plus1000Button.Click += new System.EventHandler(this.Plus1000Button_Click);
+            // 
+            // Plus100Button
+            // 
+            this.Plus100Button.Location = new System.Drawing.Point(877, 268);
+            this.Plus100Button.Name = "Plus100Button";
+            this.Plus100Button.Size = new System.Drawing.Size(75, 23);
+            this.Plus100Button.TabIndex = 37;
+            this.Plus100Button.Text = "+100$";
+            this.Plus100Button.UseVisualStyleBackColor = true;
+            this.Plus100Button.Click += new System.EventHandler(this.Plus100Button_Click);
+            // 
+            // Plus10Button
+            // 
+            this.Plus10Button.Location = new System.Drawing.Point(877, 239);
+            this.Plus10Button.Name = "Plus10Button";
+            this.Plus10Button.Size = new System.Drawing.Size(75, 23);
+            this.Plus10Button.TabIndex = 36;
+            this.Plus10Button.Text = "+10$";
+            this.Plus10Button.UseVisualStyleBackColor = true;
+            this.Plus10Button.Click += new System.EventHandler(this.Plus10Button_Click);
+            // 
+            // BetButton
+            // 
+            this.BetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.BetButton.Location = new System.Drawing.Point(877, 333);
+            this.BetButton.Name = "BetButton";
+            this.BetButton.Size = new System.Drawing.Size(75, 23);
+            this.BetButton.TabIndex = 39;
+            this.BetButton.Text = "Bet";
+            this.BetButton.UseVisualStyleBackColor = true;
+            this.BetButton.Click += new System.EventHandler(this.BetButton_Click);
+            // 
+            // CustomBet
+            // 
+            this.CustomBet.Location = new System.Drawing.Point(796, 336);
+            this.CustomBet.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.CustomBet.Name = "CustomBet";
+            this.CustomBet.Size = new System.Drawing.Size(75, 20);
+            this.CustomBet.TabIndex = 40;
+            this.CustomBet.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.CustomBet.ValueChanged += new System.EventHandler(this.CustomBet_ValueChanged);
+            this.CustomBet.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CustomBet_KeyUp);
             // 
             // Blackjack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1234, 561);
-            this.Controls.Add(this.ScoreResultBox);
+            this.Controls.Add(this.CustomBet);
+            this.Controls.Add(this.BetButton);
+            this.Controls.Add(this.Plus1000Button);
+            this.Controls.Add(this.Plus100Button);
+            this.Controls.Add(this.Plus10Button);
+            this.Controls.Add(this.Minus1000Button);
+            this.Controls.Add(this.Minus100Button);
+            this.Controls.Add(this.Minus10Button);
+            this.Controls.Add(this.StakeBox);
+            this.Controls.Add(this.StakeLabel);
+            this.Controls.Add(this.ResultBox);
             this.Controls.Add(this.Stand);
-            this.Controls.Add(this.enemy_maxbox);
-            this.Controls.Add(this.enemy_scorebox);
-            this.Controls.Add(this.player_maxbox);
-            this.Controls.Add(this.player_scorebox);
+            this.Controls.Add(this.EnemyMaxBox);
+            this.Controls.Add(this.EnemyScoreBox);
+            this.Controls.Add(this.PlayerMaxBox);
+            this.Controls.Add(this.PlayerScoreBox);
             this.Controls.Add(this.EnemyCard9);
             this.Controls.Add(this.EnemyCard8);
             this.Controls.Add(this.EnemyCard7);
@@ -384,6 +516,7 @@ namespace Blackjack
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyCard8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomBet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -412,12 +545,22 @@ namespace Blackjack
         private PictureBox EnemyCard6;
         private PictureBox EnemyCard9;
         private PictureBox EnemyCard8;
-        private Label player_scorebox;
-        private Label player_maxbox;
-        private Label enemy_maxbox;
-        private Label enemy_scorebox;
+        private Label PlayerScoreBox;
+        private Label PlayerMaxBox;
+        private Label EnemyMaxBox;
+        private Label EnemyScoreBox;
         private Button Stand;
-        private Label ScoreResultBox;
+        private Label ResultBox;
+        private Label StakeLabel;
+        private Label StakeBox;
+        private Button Minus10Button;
+        private Button Minus100Button;
+        private Button Minus1000Button;
+        private Button Plus1000Button;
+        private Button Plus100Button;
+        private Button Plus10Button;
+        private Button BetButton;
+        private NumericUpDown CustomBet;
     }
 }
 

@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -154,12 +156,12 @@ namespace Blackjack
             }
 
             // Show score
-            player_scorebox.Text = playerscore.ToString();
+            PlayerScoreBox.Text = playerscore.ToString();
 
             // If player busts
             if (playerscore > 21)
             {
-                player_scorebox.ForeColor = Color.Red;
+                PlayerScoreBox.ForeColor = Color.Red;
                 Hit.Enabled = false;
                 Stand.Enabled = false;
                 PlayerBust();
@@ -222,12 +224,12 @@ namespace Blackjack
             }
 
             // Show score
-            enemy_scorebox.Text = enemyscore.ToString();
+            EnemyScoreBox.Text = enemyscore.ToString();
 
             // If enemy busts
             if (enemyscore > 21)
             {
-                enemy_scorebox.ForeColor = Color.Red;
+                EnemyScoreBox.ForeColor = Color.Red;
             }
         }
 
@@ -237,8 +239,8 @@ namespace Blackjack
 
             Hit.Enabled = false;
             Stand.Enabled = false;
-            ScoreResultBox.Text = "BUST";
-            ScoreResultBox.ForeColor = Color.Red;
+            ResultBox.Text = "BUST";
+            ResultBox.ForeColor = Color.Red;
         }
 
         private void Natural()
@@ -247,7 +249,7 @@ namespace Blackjack
 
             Hit.Enabled = false;
             Stand.Enabled = false;
-            ScoreResultBox.Text = "BLACKJACK";
+            ResultBox.Text = "BLACKJACK";
 
             int firstcardvalue = EnemyActiveCards[0].GetValue();
 
@@ -256,6 +258,63 @@ namespace Blackjack
             {
                 Stand_Click(this, new EventArgs());
             }
+        }
+
+        private void ChangeBet(decimal value)
+        {
+            // Changes the bet
+
+            decimal bet = CustomBet.Value;
+            decimal new_bet = value + bet;
+
+            if (new_bet < 10 || new_bet > 1000000)
+            {
+                CustomBet.Value = 10;
+                return;
+            }
+
+            CustomBet.Value = new_bet;
+        }
+
+        private void UpdateBet()
+        {
+            // Updates value of stake box
+
+            if (CustomBet.Value < 10)
+            {
+                StakeBox.Text = "10$";
+                BetButton.Enabled = false;
+
+                return;
+            }
+
+            BetButton.Enabled = true;
+
+            StakeBox.Text = CustomBet.Value.ToString();
+
+            // Adds space every 3 numbers
+            StakeBox.Text = Regex.Replace(StakeBox.Text, @"(\d)(?=(\d{3})+(?!\d))", "$1 ");
+
+            StakeBox.Text += "$";
+        }
+
+        private void BetConfirm(decimal value)
+        {
+            // Ends the betting stage
+
+            Plus10Button.Visible = false;
+            Plus100Button.Visible = false;
+            Plus1000Button.Visible = false;
+            Minus10Button.Visible = false;
+            Minus100Button.Visible = false;
+            Minus1000Button.Visible = false;
+            CustomBet.Visible = false;
+            BetButton.Visible = false;
+
+            Hit.Enabled = true;
+            Stand.Enabled = true;
+
+            previous_bet = CustomBet.Value;
         }
 
         private void Wait(int milliseconds)
